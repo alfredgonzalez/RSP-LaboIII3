@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados y Clientes</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        align-items: center;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+    
+    select,
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    
+    button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .form-line {
+        width: 48%;
+    }
+    
+    .checkbox-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .col {
+        width: 48%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    
+    .btnEnviar,
+    .btnBaja,
+    .btnModificacion,
+    .btnCancelar {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .btnBaja {
+        background-color: #f44336;
+    }
+    
+    .btnModificacion {
+        background-color: #2196f3;
+    }
+    
+    .btnCancelar {
+        background-color: #808080;
+    }
+    
+    .btnEnviar:hover,
+    .btnBaja:hover,
+    .btnModificacion:hover,
+    .btnCancelar:hover {
+        background-color: #45a049;
+    }
+ 
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    
+    .success-message {
+        color: green;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    .divTabla
+    {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    .btnAgregar{
+        
+        width: 900px;
+        align-items: center;
+    }
+    
+    #spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    }
+
+    #spinner {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    border-top-color: #000000;
+    
+    animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    }
+
+    
+    
+    
+    </style>
+<body>
+    
+    <div class="container">
+        <h2>Form Datos</h2>
+        
+    <div class="divTabla"></div>
+    <div id="spinner-container">
+        <div id="spinner" >
+            
+        </div>
+      </div>
+      
+    <div>
+        <button id="btnAgregar" class="btnAgregar">AGREGAR</button>
+    </div>
+
+    <div id="divFormulario" class="container">
+        <legend id="legendABM" >Form ABM</legend>
+        <form>
+          <div>
+            <div>
+              <label for="txtId">ID</label>
+              <input
+                type="text"
+                name="id"
+                class="form-control"
+                id="txtId"
+              />
+              <small></small>
+            </div>     
+            <div>
+              <div class="col-12">
+                <label for="txtNombre">nombre</label>
+                <input
+                  type="text"
+                  name="nombre"
+                  class="form-control"
+                  id="txtNombre"
+                />
+                <small></small>
+              </div>
+            </div>
+            <div>
+              <div>
+                <label for="txtApellido">apellido</label>
+                <input
+                  type="text"
+                  name="apellido"
+                  class="form-control"
+                  id="txtApellido"
+                />
+                <small></small>
+              </div>
+            </div>
+
+            <div >
+              <div >
+                <label for="edad">edad</label>
+                <input
+                  type="number"
+                  name="edad"
+                  class="form-control"
+                  id="edad"
+                />
+                <small></small>
+              </div>
+            </div>
+            <div >
+              <div>
+                <label id="lblTipo">Tipo: </label>
+                <select id="cmbTipo" class="cmbTipo" aria-label="Tipo: ">
+                    <option value="Vacio" disabled selected></option>
+                    <option value="Empleado">Empleado</option>
+                    <option value="Cliente">Cliente</option>
+                  </select>
+                <small></small>
+              </div>
+            </div>
+            <div >
+                <div >
+                  <label for="txtSueldo" id="lblSueldo" >Sueldo</label>
+                  <input
+                    type="number"
+                    name="sueldo"
+                    class="form-control"
+                    id="txtSueldo"
+                  />
+                  <small></small>
+                </div>
+            </div>
+            <div >
+                <div >
+                  <label for="txtVentas" id="lblVentas" >Ventas</label>
+                  <input
+                    type="number"
+                    name="ventas"
+                    class="form-control"
+                    id="txtVentas"
+                  />
+                  <small></small>
+                </div>
+            </div>
+            <div >
+                <div >
+                  <label for="txtCompras" id="lblCompras" >Compras</label>
+                  <input
+                    type="number"
+                    name="compras"
+                    class="form-control"
+                    id="txtCompras"
+                  />
+                  <small></small>
+                </div>
+            </div>
+            <div >
+                <div >
+                  <label for="txtTelefono" id="lblTelefono" >Telefono</label>
+                  <input
+                    type="text"
+                    name="telefono"
+                    class="form-control"
+                    id="txtTelefono"
+                  />
+                  <small></small>
+                </div>
+            </div>
+            <input
+              type="submit"
+              class="btnEnviar"
+              value="Guardar"
+              name="btnEnviar"
+              id="btnEnviar"
+            />
+            <button id="btnCancelar">Cancelar</button>
+            <small id="mensajeEnviar"></small>
+        </div>
+        
+    </form>
+
+    <script>
+
+        const $divTabla = document.querySelector(".divTabla");
+        const $formulario = document.forms[0];
+        const $tipo = document.getElementById("cmbTipo");
+        const $btnEnviar = document.querySelector("#btnEnviar");
+        const $btnAgregar = document.querySelector("#btnAgregar");
+        const $btnCancelar = document.querySelector("#btnCancelar");
+        const headers = document.querySelectorAll("#table th");
+        const $spinner = document.querySelector("#spinner");
+    
+        const $mensajeEnviar = document.getElementById("mensajeEnviar");
+        
+
+        class Persona{
+            constructor(id, nombre, apellido, edad) {
+            
+            this.id = id;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
+        }
+        }
+
+        class Empleado extends Persona{
+            constructor(id, nombre, apellido, edad, sueldo, ventas){
+                super(id, nombre, apellido, edad);
+                
+                this.sueldo = sueldo;
+                this.ventas = ventas;
+            }
+        }
+
+        class Cliente extends Persona{
+            constructor(id, nombre, apellido, edad, compras, telefono){
+                super(id, nombre, apellido, edad);
+                
+                this.compras = compras;
+                this.telefono = telefono;
+            }
+        }
+
+        
+        const URL = "http://localhost/RSP-LaboIII-AlfredoGonzalez/PersonasEmpleadosClientes.php";
+
+        let personas=[];
+        let data =[];
+        
+        function getPersonas()
+        {
+            mostrarSpinner($spinner);
+            try
+            {
+            let xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function () 
+            {
+                if (xhr.readyState === 4) 
+                {
+                    
+                    if (xhr.status === 200 ) 
+                    {
+                        data = JSON.parse(xhr.responseText);
+                        data.map(obj => {
+                        if (obj.hasOwnProperty('sueldo') && obj.hasOwnProperty('ventas')) 
+                        {
+                            auxEmpleado = new Empleado(obj.id, obj.nombre, obj.apellido, obj.edad, obj.sueldo, obj.ventas);
+                            personas.push(auxEmpleado);
+                            actualizarTabla($divTabla, personas);
+                            ocultarSpinner($spinner);     
+                            return;
+                        }      
+                        else if (obj.hasOwnProperty('compras') && obj.hasOwnProperty('telefono')) 
+                        {
+                            auxCliente = new Cliente(obj.id, obj.nombre, obj.apellido, obj.edad, obj.compras, obj.telefono);
+                            personas.push(auxCliente);
+                            actualizarTabla($divTabla, personas);
+                            ocultarSpinner($spinner);
+                            
+                            return;
+                        } 
+                        });
+                    
+                    } 
+                    else 
+                    {
+                        window.alert(`El estado no es el acordado o hubo algun problema`);
+                        ocultarSpinner();
+                            
+                    }
+                }};
+            
+            
+            xhr.open("GET", URL);
+            xhr.send();
+            
+            }
+            catch(err)
+            {
+                console.log("Error: ", err);
+            }
+                          
+        };
+        
+
+        window.addEventListener("load", () => {       
+            mostrarSpinner();
+            $formulario.style.display = 'none';
+            $("legendABM").style.display = 'none';  
+            $btnAgregar.style.display = 'none';
+            getPersonas();
+            $("txtId").disabled = 'true';
+        });
+
+  
+        function $(element_id)
+        {
+            return document.getElementById(element_id);
+        }
+
+   
+        function filtrarTipo()
+        {
+            if($tipo.value == "Empleado")
+            {
+                ocultarInputSegunValue("Empleado");
+            }
+            else
+            {
+                ocultarInputSegunValue("Cliente");
+            }
+        }
+
+        function ocultarInputSegunValue(value)
+        {
+            if(value == "Empleado")
+            {
+                $("txtSueldo").style.display = 'block';
+                $("txtVentas").style.display = 'block';
+                $("lblSueldo").style.display = 'block';
+                $("lblVentas").style.display = 'block';
+
+                $("txtCompras").style.display = 'none';
+                $("txtTelefono").style.display = 'none';
+                $("lblCompras").style.display = 'none';
+                $("lblTelefono").style.display = 'none';
+            }
+            else
+            {
+                $("txtCompras").style.display = 'block';
+                $("txtTelefono").style.display = 'block';
+                $("lblCompras").style.display = 'block';
+                $("lblTelefono").style.display = 'block';
+
+                $("txtSueldo").style.display = 'none';
+                $("txtVentas").style.display = 'none';
+                $("lblSueldo").style.display = 'none';
+                $("lblVentas").style.display = 'none';
+            }
+
+            return value;
+        }
+
+        //creacion de tabla
+        function crearCabecera(arrayPersonas) {
+            const cabecera = document.createElement("thead"),
+            tr = document.createElement("tr");
+
+            const headers = arrayPersonas.reduce((acc, arrayPersonas) => {
+                Object.keys(arrayPersonas).forEach(key => {
+                    if (!acc.includes(key)) {
+                        acc.push(key);
+                        }
+                    });
+                return acc;
+                }, []);
+            headers.forEach(element => {
+                const th = document.createElement("th");
+                th.textContent = element;
+                th.setAttribute("onclick", `ordenarTabla('${element}')`);
+                tr.appendChild(th);
+            });
+            const thModificar = document.createElement("th");
+            const thEliminar = document.createElement("th");
+
+            thModificar.textContent = "Modificar";
+            thEliminar.textContent = "Eliminar";
+
+            tr.appendChild(thModificar);
+            tr.appendChild(thEliminar);
+            cabecera.appendChild(tr);
+            return cabecera;
+        }
+
+        function crearCuerpo(personas) {
+            const cuerpo = document.createElement("tbody");
+            let filaHTML = '';
+            keys = ["id", "nombre", "apellido", "edad","sueldo","ventas", "compras", "telefono"];
+            nuevaLista = personas.map((item)=>{
+            let nuevaPersona = {};
+            keys.map((key) => nuevaPersona[key] = item[key]);
+            return nuevaPersona;
+            });
+            
+            
+            nuevaLista.forEach(elemento => {
+            const fila = document.createElement("tr");
+            for (const atributo in elemento) {
+                if (atributo === "id") {
+                    fila.setAttribute("data-id", elemento[atributo]);
+                }
+                const celda = document.createElement("td");
+                    
+
+                if(elemento[atributo] == null)
+                {
+                    celda.textContent = "N/A";
+                }
+                else
+                {
+                    celda.textContent = elemento[atributo];
+                }
+                
+                fila.appendChild(celda);
+                fila.classList.add("puntero");
+            }
+                //const celdaModificar = document.createElement("td");
+                //const celdaEliminar = document.createElement("td");
+                filaHTML = `<td><button classname="modificar ${elemento.id}" onclick="cargarDatosPersona(${elemento.id});">Modificar</button></td>
+                            <td><button classname="eliminar ${elemento.id}" onclick="cargarDatosPersonaEliminar(${elemento.id});">Eliminar</button></td>`;
+                    fila.innerHTML += filaHTML;
+                fila.classList.add("puntero");
+                cuerpo.appendChild(fila);
+            });
+            return cuerpo;
+        }
+
+        function crearTabla(personas) {
+
+            const tabla = document.createElement("table");
+            tabla.classList.add("centrar");
+            tabla.appendChild(crearCabecera(personas));
+            tabla.appendChild(crearCuerpo(personas));
+
+            return tabla;
+        }
+        //actualizo tabla
+        function actualizarTabla($divTabla, personas) {
+            while ($divTabla.hasChildNodes()) {
+                $divTabla.removeChild($divTabla.firstChild);
+            }
+            $divTabla.appendChild(crearTabla(personas));
+
+
+            
+            $formulario.style.display = 'none';
+            $("legendABM").style.display = 'none';       
+            $divTabla.style.display = 'block'
+            $divTabla.style.display = 'center';
+            $btnAgregar.style.display = 'block';
+            
+        }
+       
+
+        function validarDatosEmpleado(nombre, apellido, edad, sueldo, ventas)
+        {
+            if(nombre != null &&  apellido != null && 
+                edad > 0 && sueldo != null && sueldo > 0 && ventas != null && ventas > 0 )
+               {
+                    return true
+               }
+            return false;
+        }
+
+        function validarDatosCliente(nombre, apellido, edad, compras, telefono)
+        {
+            if(nombre != null && apellido != "" && 
+                edad > 0 && compras != null &&compras > 0 && telefono != null)
+               {
+                    return true
+               }
+            return false;
+        }
+        
+            
+
+        //eventos
+       
+
+      
+        $tipo.addEventListener('change', (filtrarTipo));
+        
+      
+        $btnAgregar.addEventListener('click', (e)=>{
+            e.preventDefault();
+            $btnEnviar.value = "Guardar";
+            $formulario.style.display = "inline-table";
+            $divTabla.style.display = 'none';
+            $btnAgregar.style.display = 'none';
+            $tipo.style.display = "inline-block";
+            $("lblTipo").style.display = "inline-block";
+            limpiarInput();
+        })
+
+        $formulario.addEventListener('submit',(e)=>
+        {
+            e.preventDefault();
+                $mensajeEnviar.textContent = "";
+                $mensajeEnviar.classList.remove("danger");
+                if ($btnEnviar.value == "Guardar") 
+                {
+                    var nombre = document.getElementById("txtNombre").value;
+                    var apellido = document.getElementById("txtApellido").value;
+                    var edad = document.getElementById("edad").value;
+                    var sueldo = document.getElementById("txtSueldo").value;
+                    var ventas = document.getElementById("txtVentas").value;
+                    var compras = document.getElementById("txtCompras").value;
+                    var telefono= document.getElementById("txtTelefono").value;
+                    if($tipo.value != "Vacio")
+                    {
+
+                        if($tipo.value == "Empleado")
+                        {
+                            if(validarDatosEmpleado(nombre, apellido, parseInt(edad),parseFloat(sueldo),parseInt(ventas)))
+                            {
+                                nuevoEmpleado ={nombre: nombre, apellido: apellido, edad: parseInt(edad),ventas: parseFloat(ventas), sueldo: parseFloat(sueldo) };
+                              
+                                crearPersona(nuevoEmpleado);
+    
+                                
+                                actualizarTabla($divTabla, personas);
+                                limpiarInput();
+                            }
+                            else
+                            {
+                                alert("datos invalidos");
+                            }
+                        }
+                        else if($tipo.value == "Cliente")
+                        {
+                            if(validarDatosCliente(nombre, apellido, parseInt(edad), parseFloat(compras), telefono))
+                            {
+                               
+                      
+                                nuevoCliente ={nombre: nombre, apellido: apellido, edad: parseInt(edad), compras: parseFloat(compras), telefono: telefono};
+                                crearPersona(nuevoCliente);
+                               
+                                actualizarTabla($divTabla, personas);
+                                limpiarInput();
+                            }
+                            else{
+                                alert("datos invalidos");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        alert("Ingrese un tipo de persona valido");
+                    }
+                } 
+                else if ($btnEnviar.value == "Modificar") 
+                 {
+                        var id = document.getElementById("txtId").value;
+                        var nombre = document.getElementById("txtNombre").value;
+                        var apellido = document.getElementById("txtApellido").value;
+                        var edad = document.getElementById("edad").value;
+                        var sueldo = document.getElementById("txtSueldo").value;
+                        var ventas = document.getElementById("txtVentas").value;
+                        var compras = document.getElementById("txtCompras").value;
+                        var telefono= document.getElementById("txtTelefono").value;
+                        
+                        if($tipo.value == "Empleado")
+                        {
+ 
+                           if(validarDatosEmpleado(nombre, apellido, parseInt(edad),parseFloat(sueldo),parseInt(ventas)))
+                            {
+                                nuevoEmpleado = new Empleado (id, nombre, apellido, parseInt(edad),parseFloat(sueldo),parseInt(ventas));
+                                modificarPersona(nuevoEmpleado).then(res => console.log(res));
+                                console.log(nuevoEmpleado);
+                                limpiarInput();
+                            }
+                            else
+                            {
+                                window.alert("Datos invalidos");
+                            }
+ 
+                        }
+                        else if($tipo.value == "Cliente")
+                        {
+                            if(validarDatosCliente(nombre, apellido, parseInt(edad), parseFloat(compras),telefono))
+                            {
+                                nuevoCliente = new Cliente (id, nombre, apellido, parseInt(edad), parseFloat(compras),telefono);
+                                modificarPersona(nuevoCliente).then(res => console.log(res));
+                                console.log(nuevoCliente);
+                                limpiarInput();
+                            }
+                            else{
+                                window.alert("datos invalidos");
+                            }
+                        }
+                    }   
+                    else if($btnEnviar.value == "Eliminar")
+                    {
+                        var id = document.getElementById("txtId").value;
+                        var nombre = document.getElementById("txtNombre").value;
+                        var apellido = document.getElementById("txtApellido").value;
+                        var edad = document.getElementById("edad").value;
+                        var sueldo = document.getElementById("txtSueldo").value;
+                        var ventas = document.getElementById("txtVentas").value;
+                        var compras = document.getElementById("txtCompras").value;
+                        var telefono= document.getElementById("txtTelefono").value;
+                        
+                        if($tipo.value == "Empleado")
+                        {
+                            
+                            if(validarDatosEmpleado(nombre, apellido, parseInt(edad),parseFloat(sueldo),parseInt(ventas)))
+                            {
+                                nuevoEmpleado = new Empleado (id, nombre, apellido, parseInt(edad),parseFloat(sueldo),parseInt(ventas));
+                                eliminarPersona(nuevoEmpleado);
+                                console.log(nuevoEmpleado);
+                                limpiarInput();
+                            }
+ 
+                        }
+                        else if($tipo.value == "Cliente")
+                        {
+                            if(validarDatosCliente(nombre, apellido, parseInt(edad), parseFloat(compras),telefono))
+                            {
+                                nuevoCliente = new Cliente (id, nombre, apellido, parseInt(edad), parseFloat(compras),telefono);
+                                eliminarPersona(nuevoCliente);
+                                console.log(nuevoCliente);
+                                limpiarInput();
+                            }
+                            else{
+                                console.log("datos invalidos");
+                            }
+                        }
+                    }
+                    else{
+                    $mensajeEnviar.classList.add("danger");
+                    $mensajeEnviar.textContent = "Completar campos de manera correcta";
+                    }});
+
+            async function eliminarPersona(persona)
+            {
+                    
+                    const personaJson = JSON.stringify(persona);
+                    const index = personas.findIndex((elemento) => elemento.id == persona.id);
+                    
+                    mostrarSpinner($spinner);
+                    
+                try
+                {
+                       
+                    let response = await fetch(URL, {
+                        method: "DELETE", 
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: personaJson,
+                        })
+                    .then((response)=>
+                    {
+                        if(response.status == 200)
+                        {
+                            personas.splice(index, 1);
+                            
+                            
+                        } else {
+                            window.alert("error en la eliminacion");
+                            throw new Error('');
+                        }        
+                    });
+                    }
+                catch(Error)
+                {
+                   console.error("Error en la eliminacion ", err);
+                }
+                finally
+                {
+                    ocultarSpinner($spinner);
+                    actualizarTabla($divTabla, personas);
+                    return personas[index];
+                }
+
+                    
+            }
+            async function modificarPersona(persona) 
+            {
+                
+                    const personaJson = JSON.stringify(persona);
+                    const index = personas.findIndex((elemento) => elemento.id == persona.id);
+                    mostrarSpinner($spinner);
+                    
+                try
+                {
+                    
+                    
+                    let response = await fetch(URL, {
+                        method: "POST", 
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: personaJson,
+                        })
+                    .then((response)=>
+                    {
+                        if(response.status == 200 && response.ok)
+                        {
+                            
+                            if(persona instanceof Empleado)
+                            {
+                                personas[index].id = persona.id;
+                                personas[index].nombre = persona.nombre;
+                                personas[index].apellido = persona.apellido;
+                                personas[index].edad = persona.edad;
+                                personas[index].sueldo = persona.sueldo;
+                                personas[index].ventas = persona.ventas;
+                                console.log("persona modificada con exito");
+                            }
+                            else if (persona instanceof Cliente) 
+                            {
+                                personas[index].id = persona.id;
+                                personas[index].nombre = persona.nombre;
+                                personas[index].apellido = persona.apellido;
+                                personas[index].edad = persona.edad;
+                                personas[index].compras = persona.compras;
+                                personas[index].telefono = persona.telefono;
+                                console.log("persona modificada con exito");
+                            }
+                        } else {
+                            window.alert("error en la modificacion");
+                            throw new Error('');
+                        }        
+                    });
+                    }
+                catch(Error)
+                {
+                    console.error("Error en la modificacion ", err);
+                }
+                finally
+                {
+                    ocultarSpinner($spinner);
+                    actualizarTabla($divTabla, personas);
+                    return personas[index];
+                }
+            }
+
+            $btnCancelar.addEventListener('click', (e)=>
+            {
+                e.preventDefault();
+                actualizarTabla($divTabla, personas);
+            })
+ 
+        function  crearPersona (persona) 
+        {
+                const personaJson = JSON.stringify(persona);
+                
+                mostrarSpinner($spinner);
+                try
+                {
+                    fetch(URL, {
+                        method: "PUT", 
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: personaJson,
+                        })
+                    .then(function (response)
+                    {
+                        if(response.status == 200 && response.ok)
+                        {
+                            return response.json()
+                        }
+                        else
+                        {
+                            throw new Error('Error en la solicitud.');
+                        }
+                        
+                    }).then((data)=>
+                    {
+
+                        if ($tipo.value == "Empleado") 
+                        {
+                            auxPersona = new Empleado(data.id, persona.nombre, persona.apellido, persona.edad, persona.sueldo, persona.ventas);
+                            personas.push(auxPersona);
+                            
+                            actualizarTabla($divTabla, personas);
+                            ocultarSpinner($spinner);     
+                            return;
+                        }      
+                        else if ($tipo.value == "Cliente") 
+                        {
+                            auxCliente = new Cliente(data.id, persona.nombre, persona.apellido, persona.edad, persona.compras, persona.telefono);
+                            personas.push(auxCliente);
+                            actualizarTabla($divTabla, personas);
+                            ocultarSpinner($spinner);
+                            
+                            return;
+                        }
+                        else
+                        {
+                            window.alert("error en el Alta");
+                            throw new Error('');
+                        }
+
+                    }) 
+                }
+                catch(Error)
+                {
+                    console.error("Error en el Alta ");
+                }       
+        }
+        
+
+        function cargarDatosPersona(id)
+        {
+            const index = personas.findIndex((elemento) => elemento.id == id);
+            
+            $divTabla.style.display = "none";
+            $formulario.style.display = "inline-block";
+            $btnAgregar.style.display = "none";
+            $btnEnviar.value = "Modificar";
+            $tipo.style.display = "none";
+            $("lblTipo").style.display = "none";
+            if(personas[index] instanceof Empleado)
+            {
+                ocultarInputSegunValue("Empleado");
+                document.getElementById("txtId").value = personas[index].id;
+                document.getElementById("txtNombre").value = personas[index].nombre;
+                document.getElementById("txtApellido").value = personas[index].apellido;
+                document.getElementById("edad").value = personas[index].edad;
+                
+                document.getElementById("txtSueldo").value = personas[index].sueldo;
+                document.getElementById("txtVentas").value = personas[index].ventas;
+                $tipo.value = "Empleado";
+            }
+            else
+            {
+                ocultarInputSegunValue("Cliente");
+                document.getElementById("txtId").value = personas[index].id;
+                document.getElementById("txtNombre").value = personas[index].nombre;
+                document.getElementById("txtApellido").value = personas[index].apellido;
+                document.getElementById("edad").value = personas[index].edad;
+
+                document.getElementById("txtCompras").value = personas[index].compras;
+                document.getElementById("txtTelefono").value = personas[index].telefono;
+                $tipo.value = "Cliente";
+            }
+        }
+
+        function cargarDatosPersonaEliminar(id)
+        {
+            const index = personas.findIndex((elemento) => elemento.id == id);
+
+            $divTabla.style.display = "none";
+            $formulario.style.display = "inline-block";
+            $btnAgregar.style.display = "none";
+            $btnEnviar.value = "Eliminar";
+            $tipo.style.display = "none";
+            $("lblTipo").style.display = "none";
+            if(personas[index] instanceof Empleado)
+            {
+                ocultarInputSegunValue("Empleado");
+                document.getElementById("txtId").value = personas[index].id;
+                document.getElementById("txtNombre").value = personas[index].nombre;
+                document.getElementById("txtApellido").value = personas[index].apellido;
+                document.getElementById("edad").value = personas[index].edad;
+                
+                document.getElementById("txtSueldo").value = personas[index].sueldo;
+                document.getElementById("txtVentas").value = personas[index].ventas;
+                $tipo.value = "Empleado";
+            }
+            else
+            {
+                ocultarInputSegunValue("Cliente");
+                document.getElementById("txtId").value = personas[index].id;
+                document.getElementById("txtNombre").value = personas[index].nombre;
+                document.getElementById("txtApellido").value = personas[index].apellido;
+                document.getElementById("edad").value = personas[index].edad;
+
+                document.getElementById("txtCompras").value = personas[index].compras;
+                document.getElementById("txtTelefono").value = personas[index].telefono;
+                $tipo.value = "Cliente";
+            }
+        }
+
+        
+        function mostrarSpinner() {
+        document.getElementById("spinner-container").style.display = "block";
+        }
+
+        function ocultarSpinner() {
+        document.getElementById("spinner-container").style.display = "none";
+        }
+        function limpiarInput()
+        {
+            document.getElementById("txtId").value = "";
+            document.getElementById("txtNombre").value= "";
+            document.getElementById("txtApellido").value= "";
+            document.getElementById("edad").value= "";
+            document.getElementById("txtSueldo").value= "";
+            document.getElementById("txtVentas").value= "";
+            document.getElementById("txtCompras").value= "";
+            document.getElementById("txtTelefono").value= "";
+            $btnEnviar.value = "Guardar";
+        }
+
+
+        
+            
+    </script>
+</body>
+</html>
